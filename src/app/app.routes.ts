@@ -8,6 +8,6 @@ export const routes: Routes = [
 
     { path: 'home/hero/:id', loadComponent: () => import('./home/hero-list/hero-item/hero-item').then(m => m.HeroItem) },
 
-    { path: '**', redirectTo: 'home', pathMatch: 'full' }
+    { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
 ];
