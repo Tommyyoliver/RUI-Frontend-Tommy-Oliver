@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Spiderman",
+    "description": "Tu amigable vecino trepamuros.",
+    "age": 17,
+    "power": "Sentido arácnido y agilidad proporcional a una araña."
+  },
+  {
+    "id": 2,
+    "name": "Iron Man",
+    "description": "Genio, millonario, playboy, filántropo.",
+    "age": 45,
+    "power": "Armadura de alta tecnología."
+  },
+  {
+    "id": 3,
+    "name": "Wonder Woman",
+    "description": "Princesa guerrera de las Amazonas.",
+    "age": 800,
+    "power": "Fuerza sobrehumana y lazo de la verdad."
+  }
+]
