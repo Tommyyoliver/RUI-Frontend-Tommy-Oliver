@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, OnInit, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Hero } from '../interface/hero.interface';
 import { firstValueFrom } from 'rxjs';
 import { HeroCreateDto } from '../dto/hero-create.dto';
@@ -8,15 +8,15 @@ import { HeroUpdateDto } from '../dto/hero-update.dto';
 @Injectable({
   providedIn: 'root',
 })
-export class HandlerHeroData implements OnInit {
+export class HandlerHeroData {
   
   private readonly http = inject(HttpClient);
-  private readonly dbPath = 'database/hero-db.json';
+  private readonly dbPath = 'assets/database/hero-db.json';
   
   private _heroes = signal<Hero[]>([]);
   public heroes = this._heroes.asReadonly();
 
-  ngOnInit(): void {
+  constructor() {
     this.loadInitialData();
   }
 
@@ -59,7 +59,7 @@ export class HandlerHeroData implements OnInit {
     const currentHeroes = this._heroes();
     const index = currentHeroes.findIndex(h => h.id === heroDto.id);
     
-    if( index !== 1 ) {
+    if( index !== -1 ) {
       const updatedHeroes = [...currentHeroes];
       updatedHeroes[index] = { ...updatedHeroes[index], ...heroDto, age: parseInt(heroDto.age)};
       this._heroes.set(updatedHeroes);
