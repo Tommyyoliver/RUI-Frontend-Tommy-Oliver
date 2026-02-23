@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Hero } from '../interface/hero.interface';
 import { firstValueFrom } from 'rxjs';
 import { HeroCreateDto } from '../dto/hero-create.dto';
@@ -14,7 +14,18 @@ export class HandlerHeroData {
   private readonly dbPath = 'assets/database/hero-db.json';
   
   private _heroes = signal<Hero[]>([]);
+  private _loading    = signal<boolean>(false);
+  private _searchTerm = signal<string>('');
+  
   public heroes = this._heroes.asReadonly();
+  readonly loading    = this._loading.asReadonly();
+  readonly searchTerm = this._searchTerm.asReadonly();
+
+  readonly filteredHeroes = computed(() => {
+    const term = this._searchTerm().trim().toLowerCase();
+    if (!term) return this._heroes();
+    return this._heroes().filter(h => h.name.toLowerCase().includes(term));
+  });
 
   constructor() {
     this.loadInitialData();
@@ -22,6 +33,7 @@ export class HandlerHeroData {
 
 
   private async loadInitialData(): Promise<void> {
+    this._loading.set(true);
     try {
       const data = await firstValueFrom(this.http.get<Hero[]>(this.dbPath));
       this._heroes.set(data);
@@ -29,6 +41,8 @@ export class HandlerHeroData {
     } catch (err) {
       console.error('Error al cargar los datos iniciales:', err);
       this._heroes.set([]);
+    } finally {
+      this._loading.set(false);
     }
   }
 
@@ -40,9 +54,8 @@ export class HandlerHeroData {
     return this._heroes().find((hero) => hero.id === id);
   }
 
-  searchHeroes(term: string): Hero[] {
-    const normalizedTerm = term.toLowerCase();
-    return this._heroes().filter(h => h.name.toLowerCase().includes(normalizedTerm));
+  setSearchTerm(term: string): void {
+    this._searchTerm.set(term);
   }
 
   createHero(heroDto: HeroCreateDto): Hero {
@@ -56,16 +69,15 @@ export class HandlerHeroData {
   }
 
   updateHero(heroDto: HeroUpdateDto): Hero {
-    const currentHeroes = this._heroes();
-    const index = currentHeroes.findIndex(h => h.id === heroDto.id);
+    const list = this._heroes();
+    const index = list.findIndex(h => h.id === heroDto.id);
     
-    if( index !== -1 ) {
-      const updatedHeroes = [...currentHeroes];
-      updatedHeroes[index] = { ...updatedHeroes[index], ...heroDto, age: parseInt(heroDto.age)};
-      this._heroes.set(updatedHeroes);
-      return updatedHeroes[index];
-    }
-    throw new Error('Heroe no encontrado');
+    if( index === -1 ) throw new Error('Heroe no encontrado');
+    
+    const updatedHeroes = [...list];
+    updatedHeroes[index] = { ...updatedHeroes[index], ...heroDto, age: parseInt(heroDto.age)};
+    this._heroes.set(updatedHeroes);
+    return updatedHeroes[index];
   }
 
   deleteHero(id: string): boolean {

@@ -1,0 +1,262 @@
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+
+    .page-title {
+        font-family: 'Bebas Neue', Impact, sans-serif;
+        font-size: 44px; letter-spacing: 3px;
+        color: #fff; margin: 0 0 4px; line-height: 1;
+    }
+    .page-subtitle {
+        color: rgba(255,255,255,0.35); font-size: 13px; margin: 0;
+    }
+}
+
+.controls-bar {
+    display: flex; gap: 14px;
+    align-items: center; flex-wrap: wrap;
+    margin-bottom: 36px;
+
+    .search-wrapper {
+        flex: 1; min-width: 240px;
+        position: relative; display: flex; align-items: center;
+        
+        .search-icon {
+            position: absolute; left: 15px;
+            color: rgba(255,255,255,0.32); font-size: 20px !important;
+            width: 20px !important; height: 20px !important;
+            pointer-events: none;
+        }
+        .search-input {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: #fff; font-size: 15px; font-family: 'Outfit', sans-serif;
+            padding: 13px 44px 13px 46px;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+            box-sizing: border-box;
+            &::placeholder { color: rgba(255,255,255,0.22); }
+            &:focus {
+                border-color: rgba(255,180,0,0.42);
+                background: rgba(255,180,0,0.03);
+            }
+        }
+        .clear-btn {
+            position: absolute; right: 12px;
+            background: none; border: none; cursor: pointer;
+            color: rgba(255,255,255,0.35); padding: 4px;
+            display: flex; align-items: center; border-radius: 4px;
+            transition: color 0.2s;
+        }
+        .clear-btn:hover { color: #ffb400; }
+        .clear-btn mat-icon { font-size: 18px; width: 18px; height: 18px; }
+    }
+    .create-btn {
+        background: linear-gradient(135deg, #ffb400, #ff8c00);
+        color: #000; border: none; border-radius: 12px;
+        padding: 13px 22px; font-weight: 800; font-size: 14px;
+        letter-spacing: 0.4px; cursor: pointer; font-family: 'Outfit', sans-serif;
+        display: flex; align-items: center; gap: 7px; white-space: nowrap;
+        transition: transform 0.2s, box-shadow 0.2s;
+        
+        mat-icon { 
+            font-size: 20px; 
+            width: 20px; 
+            height: 20px; 
+        }
+    }
+    .create-btn:hover { 
+        box-shadow: 0 8px 24px rgba(255,180,0,0.1); 
+    }
+}
+
+.loading {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 80px 0; gap: 18px;
+    
+    p { 
+        color: rgba(255,255,255,0.35); 
+        font-size: 14px; 
+        margin: 0; 
+    }
+}
+
+.empty { 
+    text-align: 
+    center; 
+    padding: 80px 0; 
+    
+    h3 { 
+        color: rgba(255,255,255,0.52); 
+        font-size: 18px; 
+        margin: 0 0 8px; 
+    }
+    p { 
+        color: rgba(255,255,255,0.28); 
+        font-size: 14px; 
+        margin: 0; 
+    }
+    .empty-icon {
+      width: 72px; 
+      height: 72px; 
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      margin: 0 auto 18px;
+      
+      mat-icon { font-size: 34px; width: 34px; height: 34px; color: rgba(255,255,255,0.18); }
+    }
+}
+
+.heroes-grid { 
+    display: grid; 
+    gap: 12px; 
+    
+    .hero-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+        border: 1px solid rgba(255,255,255,0.07);
+        border-radius: 16px; 
+        padding: 20px 22px;
+        cursor: pointer;
+        display: flex; 
+        align-items: center; 
+        gap: 18px;
+        position: relative; 
+        overflow: hidden;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        animation: slideIn 0.4s ease both;
+    
+        &:hover {
+            transform: translateX(5px);
+            border-color: rgba(255,180,0,0.28);
+            box-shadow: -4px 0 0 0 rgba(255,180,0,0.35), 0 4px 24px rgba(255,180,0,0.06);
+            
+            .card-glow { 
+                opacity: 1;
+            }
+            .card-arrow { 
+                color: #ffb400; 
+                transform: translateX(4px); 
+            }
+        }
+        .card-glow {
+            position: absolute; 
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255,180,0,0.04) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s; 
+            pointer-events: none;
+        }
+        .card-index {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 12px; 
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.1); 
+            min-width: 22px;
+        }
+        .card-avatar {
+            width: 50px; 
+            height: 50px; 
+            min-width: 50px;
+            background: linear-gradient(135deg, rgba(255,180,0,0.18), rgba(255,140,0,0.07));
+            border: 1px solid rgba(255,180,0,0.26);
+            border-radius: 13px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+        }
+        .card-avatar span {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            font-size: 23px; 
+            color: #ffb400; 
+            line-height: 1;
+        }
+        .card-content { 
+            flex: 1; 
+            min-width: 0; 
+        
+            .hero-name {
+                font-family: 'Bebas Neue', Impact, sans-serif;
+                font-size: 21px; 
+                letter-spacing: 1.5px;
+                color: #fff; 
+                margin: 0 0 4px;
+            }
+            .hero-desc {
+                color: rgba(255,255,255,0.38); 
+                font-size: 13px;
+                margin: 0 0 9px; 
+                overflow: hidden;
+                white-space: nowrap; 
+                text-overflow: ellipsis;
+            }
+            .hero-badges { 
+                display: flex; 
+                gap: 7px; 
+                margin-bottom: 7px; 
+                flex-wrap: wrap; 
+            }
+            .badge {
+                display: flex; 
+                align-items: center; 
+                gap: 3px;
+                padding: 2px 9px; 
+                border-radius: 20px;
+                font-size: 11px; 
+                font-weight: 600;
+                mat-icon { 
+                    font-size: 12px; 
+                    width: 12px; 
+                    height: 12px; 
+                }
+            }
+            .age-badge   { 
+                background: rgba(100,180,255,0.08); 
+                border: 1px solid rgba(100,180,255,0.18); 
+                color: rgba(120,200,255,0.85); 
+            }
+            .power-badge { 
+                background: rgba(255,180,0,0.08);
+                border: 1px solid rgba(255,180,0,0.18);
+                color: rgba(255,180,0,0.85);
+            }
+            .hero-power {
+                color: rgba(255,255,255,0.22); 
+                font-size: 12px; 
+                margin: 0;
+                white-space: nowrap; 
+                overflow: hidden; 
+                text-overflow: ellipsis;
+            }
+        }
+        .card-arrow {
+            color: rgba(255,255,255,0.14); 
+            font-size: 20px !important;
+            width: 20px !important; 
+            height: 20px !important;
+            transition: color 0.2s, 
+            transform 0.2s;
+        }
+    }
+    
+    @keyframes slideIn {
+        from { 
+            opacity: 0; 
+            transform: translateY(12px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+
+    
+    
+}

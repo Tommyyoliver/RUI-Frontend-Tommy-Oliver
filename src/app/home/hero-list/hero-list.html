@@ -1,1 +1,86 @@
-<p>hero-list works!</p>
+<section class="home-list">
+
+    <div class="page-heading">
+        <div>
+            <h1 class="page-title">Universo de Héroes</h1>
+            <p class="page-subtitle">
+                {{ handlerHeroDataService.heroes().length }} héroes registrados.
+            </p>
+        </div>
+    </div>
+
+    <div class="controls-bar">
+        <div class="search-wrapper">
+            <mat-icon class="search-icon">search</mat-icon>
+            <input
+                class="search-input"
+                type="text"
+                placeholder="Buscar héroe por nombre..."
+                [formControl]="searchControl"
+            />
+            @if (searchControl.value) {
+                <button class="clear-btn" type="button" (click)="clearSearch()">
+                <mat-icon>close</mat-icon>
+                </button>
+            }
+        </div>
+        <button class="create-btn" type="button" (click)="openCreateModal()">
+            <mat-icon>add</mat-icon>
+            Reclutar Héroe
+        </button>
+    </div>
+
+    @if (handlerHeroDataService.loading()) {
+        <div class="loading">
+            <mat-spinner diameter="44"></mat-spinner>
+            <p>Cargando héroes...</p>
+        </div>
+    }
+
+    @if ( handlerHeroDataService.loading() && handlerHeroDataService.filteredHeroes().length === 0) {
+        <div class="empty">
+            <div class="empty-icon"><mat-icon>search_off</mat-icon></div>
+            <h3>Sin resultados</h3>
+            <p>
+                @if (handlerHeroDataService.searchTerm()) {
+                    No hay héroes con ese nombre.
+                } @else {
+                    Aún no hay héroes. ¡Recluta el primero!
+                }
+          </p>
+        </div>
+    }
+
+    @if ( !handlerHeroDataService.loading() ) {
+        <div class="heroes-grid">
+            @for ( hero of handlerHeroDataService.filteredHeroes(); track hero.id; let i = $index) {
+                <article class="hero-card" (click)="goTo('hero/' + hero.id)">
+                    <div class="card-glow"></div>
+
+                    <span class="card-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+
+                    <div class="card-avatar">
+                        <span>{{ hero.name.charAt(0) }}</span>
+                    </div>
+
+                    <div class="card-content">
+                        <h3 class="hero-name">{{ hero.name }}</h3>
+                        <p class="hero-desc">{{ hero.description }}</p>
+                        <div class="hero-badges">
+                        <span class="badge age-badge">
+                            <mat-icon>cake</mat-icon>{{ hero.age }} años
+                        </span>
+                        <span class="badge power-badge">
+                            <mat-icon>bolt</mat-icon>Poder activo
+                        </span>
+                        </div>
+                        <p class="hero-power">{{ hero.power }}</p>
+                    </div>
+
+                    <mat-icon class="card-arrow">arrow_forward</mat-icon>
+                </article>
+            }
+        </div>
+    }
+
+</section>
