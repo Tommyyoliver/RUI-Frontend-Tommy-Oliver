@@ -35,6 +35,7 @@ export class HeroList {
   searchControl = new FormControl('', { nonNullable: true})
 
   constructor() {
+    this.searchControl.setValue(this.handlerHeroDataService.searchTerm());
     this.searchControl.valueChanges.pipe(
       debounceTime(220),
       distinctUntilChanged(),
