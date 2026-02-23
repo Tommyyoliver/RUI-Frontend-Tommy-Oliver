@@ -1,0 +1,71 @@
+<div class="hero-dialog">
+
+    <div class="dialog-header">
+        <div class="dialog-icon">
+            <mat-icon>{{ data.mode === 'create' ? 'add_circle' : 'edit' }}</mat-icon>
+        </div>
+        <h2 class="dialog-title">{{ data.mode === 'create' ? 'Reclutar Héroe' : 'Actualizar Héroe' }}</h2>
+        <p class="dialog-subtitle">
+        {{ data.mode === 'create' ? 'Agrega un nuevo héroe al universo' : 'Modifica los datos del héroe' }}
+        </p>
+    </div>
+
+    <form [formGroup]="heroForm" (ngSubmit)="onSubmit()" class="hero-form" novalidate>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre del Héroe</mat-label>
+            <input matInput formControlName="name" placeholder="Ej: Spiderman" />
+            <mat-icon matSuffix>person</mat-icon>
+            @if (f['name'].touched && f['name'].hasError('required')) {
+                <mat-error>El nombre es obligatorio</mat-error>
+            } @else if (f['name'].hasError('minlength')) {
+                <mat-error>Mínimo 3 caracteres</mat-error>
+            } @else if (f['name'].hasError('maxlength')) {
+                <mat-error>Máximo 20 caracteres</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput formControlName="description" rows="3" placeholder="Breve descripción del héroe..."></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+            @if (f['description'].hasError('maxlength')) {
+                <mat-error>Máximo 100 caracteres</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Edad</mat-label>
+            <input matInput formControlName="age" type="number" placeholder="Ej: 25" />
+            <mat-icon matSuffix>cake</mat-icon>
+            @if (f['age'].touched && f['age'].hasError('required')) {
+                <mat-error>La edad es obligatoria</mat-error>
+            } @else if (f['age'].hasError('min')) {
+                <mat-error>La edad debe ser mayor a 0</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Superpoder</mat-label>
+            <textarea matInput formControlName="power" rows="2" placeholder="Describe el superpoder..."></textarea>
+            <mat-icon matSuffix>bolt</mat-icon>
+            @if (f['power'].touched && f['power'].hasError('required')) {
+                <mat-error>El superpoder es obligatorio</mat-error>
+            } @else if (f['power'].hasError('maxlength')) {
+                <mat-error>Máximo 100 caracteres</mat-error>
+            }
+        </mat-form-field>
+
+        <div class="dialog-actions">
+            <button mat-button type="button" class="cancel-btn" (click)="onCancel()">
+                Cancelar
+            </button>
+            <button mat-flat-button type="submit" class="submit-btn" [disabled]="heroForm.invalid">
+                <mat-icon>{{ data.mode === 'create' ? 'add' : 'save' }}</mat-icon>
+                {{ data.mode === 'create' ? 'Reclutar' : 'Guardar Cambios' }}
+            </button>
+        </div>
+
+    </form>
+
+</div>

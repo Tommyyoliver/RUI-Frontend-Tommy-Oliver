@@ -1,0 +1,124 @@
+.hero-dialog {
+    background: #0a0a0f;
+    color: #e8e8e8;
+    min-width: 480px;
+}
+
+.dialog-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 28px 28px 22px;
+    border-bottom: 1px solid rgba(255,180,0,0.15);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -60%;
+        right: -40%;
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(circle, rgba(255,180,0,0.07) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    
+    .dialog-icon {
+        width: 44px; 
+        height: 44px;
+        background: rgba(255,180,0,0.12);
+        border: 1px solid rgba(255,180,0,0.35);
+        border-radius: 10px;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        margin-bottom: 12px;
+        
+        mat-icon { 
+            color: #ffb400; 
+            font-size: 22px; 
+            width: 22px; 
+            height: 22px; 
+        }
+    }
+    .dialog-title {
+        font-family: 'Bebas Neue', Impact, sans-serif;
+        font-size: 26px;
+        letter-spacing: 2px;
+        color: #fff;
+        margin: 0 0 4px;
+    }
+    
+    .dialog-subtitle {
+        color: rgba(255,255,255,0.42);
+        font-size: 13px;
+        margin: 0;
+    }
+}
+
+.full-width { 
+    width: 100%; 
+}
+
+.hero-form {
+    padding: 20px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+
+::ng-deep .hero-dialog {
+    --mdc-outlined-text-field-container-shape: 8px;
+    --mdc-outlined-text-field-outline-color: rgb(249, 246, 246);
+    --mdc-outlined-text-field-hover-outline-color: rgba(255,180,0,0.45);
+    --mdc-outlined-text-field-focus-outline-color: #ffb400;
+    --mdc-outlined-text-field-label-text-color: rgba(255,255,255,0.5);
+    --mdc-outlined-text-field-input-text-color: #fff;
+    --mdc-outlined-text-field-caret-color: #ffb400;
+}
+
+::ng-deep .hero-dialog .mat-mdc-text-field-wrapper {
+    background: rgba(255,255,255,0.04) !important;
+}
+
+::ng-deep .hero-dialog .mat-mdc-form-field-icon-suffix .mat-icon {
+    color: rgba(255,255,255,0.28);
+}
+
+.dialog-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+.cancel-btn {
+    color: rgba(255,255,255,0.42) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 8px !important;
+    padding: 0 22px !important;
+    height: 40px !important;
+    transition: border-color 0.2s, color 0.2s !important;
+    
+    &:hover {
+        color: #fff !important;
+        border-color: rgba(255,255,255,0.25) !important;
+    }
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #ffb400, #ff8c00) !important;
+    color: #000 !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.4px !important;
+    border-radius: 8px !important;
+    padding: 0 22px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+
+    &:disabled { opacity: 0.38 !important; }
+    mat-icon { font-size: 18px; width: 18px; height: 18px; }
+}
