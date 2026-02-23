@@ -42,6 +42,7 @@ export class HeroItem {
       if (result) {
         this.handlerHeroDataService.updateHero(result);
         this.notify.success('Heroe actualizado exitosamente!');
+        this.router.navigate(['/home']);
       }
     })
   }
