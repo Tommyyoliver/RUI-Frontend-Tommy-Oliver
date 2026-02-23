@@ -59,8 +59,8 @@ export class HeroList {
     })
   }
 
-  goTo(path: string): void {
-    this.route.navigate([path]);
+  goToHero(id: string): void {
+    this.route.navigate(['home/hero/', id]);
   }
 
 }

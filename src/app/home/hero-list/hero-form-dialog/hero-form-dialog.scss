@@ -76,6 +76,14 @@
     --mdc-outlined-text-field-label-text-color: rgba(255,255,255,0.5);
     --mdc-outlined-text-field-input-text-color: #fff;
     --mdc-outlined-text-field-caret-color: #ffb400;
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
+        color: #fff;
+    }
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-floating-label {
+        &:hover {
+            color: #cccccc;
+        }
+    }
 }
 
 ::ng-deep .hero-dialog .mat-mdc-text-field-wrapper {

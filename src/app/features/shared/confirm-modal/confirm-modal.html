@@ -1,0 +1,17 @@
+<div class="confirm-dialog">
+    <div class="warning-icon">
+        <mat-icon>warning_amber</mat-icon>
+    </div>
+    <h2 class="confirm-title">¿Eliminar Héroe?</h2>
+    <p class="confirm-text">
+    Estás a punto de eliminar a <strong>{{ data.heroName }}</strong>
+    del universo de héroes.<br />Esta acción no se puede deshacer.
+    </p>
+    <div class="confirm-actions">
+        <button mat-button class="cancel-btn" (click)="onCancel()">Cancelar</button>
+        <button mat-flat-button class="delete-btn" (click)="onConfirm()">
+            <mat-icon>delete_forever</mat-icon>
+            Eliminar
+        </button>
+    </div>
+</div>

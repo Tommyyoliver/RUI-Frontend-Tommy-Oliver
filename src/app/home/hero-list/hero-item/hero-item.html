@@ -1,1 +1,61 @@
-<p>hero-item works!</p>
+<div class="item-page">
+
+    <button class="back-btn" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Volver al listado
+    </button>
+
+    @if(hero(); as hero) {
+        <div class="detail-wrapper">
+
+            <div class="hero-header">
+                <div class="avatar-large">
+                    <span class="avatar-letter">{{ hero.name.charAt(0) }}</span>
+                    <div class="rings">
+                        <span class="ring ring-a"></span>
+                        <span class="ring ring-b"></span>
+                    </div>
+                </div>
+
+                <div class="header-info">
+                    <p class="hero-id">HÉROE #{{ hero.id.toString().substring(0,8).toUpperCase() }}</p>
+                    <h1 class="hero-name">{{ hero.name }}</h1>
+                    <p class="hero-desc">{{ hero.description }}</p>
+                </div>
+          </div>
+
+          <div class="stats-grid">
+              <div class="stat-card stat-age">
+                  <div class="stat-icon"><mat-icon>cake</mat-icon></div>
+                  <p class="stat-label">Edad</p>
+                  <p class="stat-value">{{ hero.age }}<span> años</span></p>
+              </div>
+              <div class="stat-card stat-power">
+                  <div class="stat-icon"><mat-icon>bolt</mat-icon></div>
+                  <p class="stat-label">Superpoder</p>
+                  <p class="stat-value-text">{{ hero.power }}</p>
+              </div>
+          </div>
+  
+          <div class="actions">
+              <button class="action-btn btn-update" (click)="openUpdate()">
+                  <mat-icon>edit</mat-icon>
+                  Actualizar Héroe
+              </button>
+              <button class="action-btn btn-delete" (click)="openDelete()">
+                  <mat-icon>delete_forever</mat-icon>
+                  Eliminar
+              </button>
+          </div>
+
+        </div>
+    } @else {
+        <div class="not-found">
+            <div class="nf-icon"><mat-icon>person_off</mat-icon></div>
+            <h2>Héroe no encontrado</h2>
+            <p>Este héroe no existe en el universo.</p>
+            <button class="back-to-list" (click)="goBack()">Volver al listado</button>
+        </div>
+    }
+
+</div>
