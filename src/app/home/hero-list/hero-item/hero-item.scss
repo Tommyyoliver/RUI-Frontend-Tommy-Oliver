@@ -285,3 +285,92 @@
         color: rgba(255,255,255,0.2); 
     }
 }
+
+@media (max-width: 600px) {
+    .item-page { 
+        padding: 0; 
+    }
+
+    .back-btn { 
+        margin-bottom: 28px; 
+        font-size: 13px; 
+    }
+
+    .hero-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding-bottom: 28px;
+        margin-bottom: 28px;
+    }
+
+    .avatar-large {
+        width: 80px; 
+        height: 80px; 
+        min-width: 80px;
+        border-radius: 20px;
+    }
+
+    .avatar-letter { 
+        font-size: 42px; 
+    }
+
+    .rings { 
+        inset: -10px; 
+    }
+    .ring-b { 
+        inset: -6px; 
+    }
+
+    .hero-id { 
+        font-size: 10px; 
+        letter-spacing: 2px; 
+    }
+
+    .hero-name { 
+        font-size: 38px; 
+        letter-spacing: 2px; 
+    }
+
+    .hero-desc { 
+        font-size: 13px; 
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .stat-card { 
+        padding: 18px; 
+    }
+
+    .stat-value { 
+        font-size: 34px; 
+        span { 
+            font-size: 14px; 
+        }
+    }
+
+    .stat-value-text { 
+        font-size: 14px; 
+    }
+
+    .actions { 
+        flex-direction: column; 
+        gap: 30px; 
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+        height: 46px;
+        font-size: 13px;
+    }
+
+    .btn-update { 
+        flex: unset;
+        min-height: 45px !important;
+    }
+}

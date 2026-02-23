@@ -130,3 +130,55 @@
     &:disabled { opacity: 0.38 !important; }
     mat-icon { font-size: 18px; width: 18px; height: 18px; }
 }
+
+
+@media (max-width: 600px) {
+    .hero-dialog {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .dialog-header {
+        padding: 22px 20px 18px;
+    }
+
+    .dialog-icon {
+        width: 38px; 
+        height: 38px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        
+        mat-icon { 
+            font-size: 19px; 
+            width: 19px; 
+            height: 19px; 
+        }
+    }
+
+
+    .dialog-title { 
+        font-size: 22px; 
+        letter-spacing: 1.5px; 
+    }
+
+    .dialog-subtitle { 
+        font-size: 12px; 
+    }
+
+    .hero-form {
+        padding: 16px 20px 24px;
+        gap: 0;
+    }
+
+    .dialog-actions {
+        flex-direction: column-reverse;
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .cancel-btn, .submit-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        height: 44px !important;
+    }
+}

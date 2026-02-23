@@ -88,3 +88,10 @@
 
 
 
+@media (max-width: 600px) {
+    .confirm-dialog {
+        min-width: unset;
+        width: 100%;
+        padding: 50px 0;
+    }
+}
