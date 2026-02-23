@@ -4,6 +4,7 @@ import { Hero } from '../interface/hero.interface';
 import { firstValueFrom } from 'rxjs';
 import { HeroCreateDto } from '../dto/hero-create.dto';
 import { HeroUpdateDto } from '../dto/hero-update.dto';
+import { LoaderHandler } from '../../../shared/loader-handler';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class HandlerHeroData {
   
   private readonly http = inject(HttpClient);
   private readonly dbPath = 'assets/database/hero-db.json';
-  
+  private readonly loader = inject(LoaderHandler);
+
   private _heroes = signal<Hero[]>([]);
   private _loading    = signal<boolean>(false);
   private _searchTerm = signal<string>('');
@@ -33,17 +35,20 @@ export class HandlerHeroData {
 
 
   private async loadInitialData(): Promise<void> {
-    this._loading.set(true);
+    this.loader.show();
     try {
       const data = await firstValueFrom(this.http.get<Hero[]>(this.dbPath));
       this._heroes.set(data);
-      console.log('Datos iniciales cargados:', data);
+      // console.log('Datos iniciales cargados:', data);
     } catch (err) {
       console.error('Error al cargar los datos iniciales:', err);
       this._heroes.set([]);
     } finally {
-      this._loading.set(false);
+      setTimeout(() => {
+        this.loader.hide();
+      }, 1000)
     }
+
   }
 
   getAllHeroes(): Hero[] {
@@ -59,16 +64,21 @@ export class HandlerHeroData {
   }
 
   createHero(heroDto: HeroCreateDto): Hero {
+    this.loader.show();
     const newHero: Hero = {
       id: crypto.randomUUID(),
       ...heroDto,
       age: parseInt(heroDto.age),
     }
     this._heroes.update(heroes => [...heroes, newHero]);
+    setTimeout(() => {
+      this.loader.hide();
+    }, 1000)
     return newHero;
   }
 
   updateHero(heroDto: HeroUpdateDto): Hero {
+    this.loader.show();
     const list = this._heroes();
     const index = list.findIndex(h => h.id === heroDto.id);
     
@@ -77,12 +87,19 @@ export class HandlerHeroData {
     const updatedHeroes = [...list];
     updatedHeroes[index] = { ...updatedHeroes[index], ...heroDto, age: parseInt(heroDto.age)};
     this._heroes.set(updatedHeroes);
+    setTimeout(() => {
+      this.loader.hide();
+    }, 1000)
     return updatedHeroes[index];
   }
 
   deleteHero(id: string): boolean {
+    this.loader.show();
     const initialLenght = this._heroes().length;
     this._heroes.update(heroes => heroes.filter(h => h.id !== id));
+    setTimeout(() => {
+      this.loader.hide();
+    }, 1000)
     return initialLenght !== this._heroes().length;
   }
 

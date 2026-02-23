@@ -1,1 +1,14 @@
 <router-outlet />
+
+@if (loader.visible()) {
+    <div class="loader-overlay">
+        <div class="loader-core">
+            <div class="loader-rings">
+                <span class="lr lr-1"></span>
+                <span class="lr lr-2"></span>
+                <span class="lr lr-3"></span>
+            </div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
+}
