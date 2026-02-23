@@ -14,7 +14,7 @@
 
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Nombre del Héroe</mat-label>
-            <input matInput formControlName="name" placeholder="Ej: Spiderman" />
+            <input matInput formControlName="name" appUppercaseInput placeholder="Ej: Spiderman" />
             <mat-icon matSuffix>person</mat-icon>
             @if (f['name'].touched && f['name'].hasError('required')) {
                 <mat-error>El nombre es obligatorio</mat-error>

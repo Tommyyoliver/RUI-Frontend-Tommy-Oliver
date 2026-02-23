@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Hero } from '../../../features/entities/hero/interface/hero.interface';
+import { UppercaseInput } from '../../../features/directives/uppercase-input';
 
 export interface HeroFormDialogData {
   mode: 'create' | 'update';
@@ -21,6 +22,7 @@ export interface HeroFormDialogData {
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    UppercaseInput,
   ],
   templateUrl: './hero-form-dialog.html',
   styleUrl: './hero-form-dialog.scss',
