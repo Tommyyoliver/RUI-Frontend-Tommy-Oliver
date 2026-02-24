@@ -1,59 +1,39 @@
-# ChallengeFrontendMindata
+# Challenge Frontend Mindata
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.16.
+Aplicación web desarrollada en Angular como parte del challenge frontend para Mindata.
 
-## Development server
+## Requisitos Previos
 
-To start a local development server, run:
+Para ejecutar este proyecto, se necesita tener instalado:
 
-```bash
-ng serve
-```
+*   **Docker**: Para construir y ejecutar el contenedor de la aplicación.
+*   **Node.js** (v20+): Solo si se desea ejecutar el proyecto localmente sin Docker.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Ejecución con Docker
 
-## Code scaffolding
+Seguir estos pasos para levantar la aplicación utilizando Docker:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1.  **Construir la imagen:**
 
-```bash
-ng generate component component-name
-```
+    Abrir una terminal en la raíz del proyecto y ejecutar:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+    ```bash
+    docker build -t angular-hero-app .
+    ```
 
-```bash
-ng generate --help
-```
+2.  **Correr el contenedor:**
 
-## Building
+    Una vez construida la imagen, iniciar el contenedor mapeando el puerto 80 del contenedor al puerto 8080 de tu máquina:
 
-To build the project run:
+    ```bash
+    docker run -d -p 8080:80 --name mi-app-heroes angular-hero-app
+    ```
 
-```bash
-ng build
-```
+3.  **Acceder a la aplicación:**
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+    Abrir el browser y acceder a [http://localhost:8080](http://localhost:8080).
 
-## Running unit tests
+## Comandos Útiles
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+*   **Detener el contenedor:** `docker stop mi-app-heroes`
+*   **Eliminar el contenedor:** `docker rm mi-app-heroes`
